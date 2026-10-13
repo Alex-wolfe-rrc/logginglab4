@@ -177,11 +177,8 @@ class OperatorRepository(Repository):
             handle   -- the submitted handle string
             password -- the submitted plain text password string
         """
-        query = f"SELECT * FROM operators WHERE handle = '{handle}' AND password = '{password}'"
-        try:
-            return self._db.fetchone(query, ())
-        except Exception:
-            return None
+        query = "SELECT * FROM operators WHERE handle = ? AND password = ?"
+        return self._db.fetchone(query, (handle, password))
 
     def find_by_id(self, record_id):
         """

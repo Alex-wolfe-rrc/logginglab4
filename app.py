@@ -375,6 +375,12 @@ class ScanLogger:
                 f"keyword={self._clean(keyword)}\n"
             )
 
+    def log_successful_login(self, handle):
+        with open(LOG_PATH, 'a') as log_file:
+            log_file.write(
+                f"[{datetime.now()}] LOGIN_SUCCESS | handle={self._clean(handle)}\n"
+            )
+
 
 # -- App setup ---------------------------------------------------------------
 
@@ -415,6 +421,7 @@ def login():
         if operator:
             session['handle']      = operator['handle']
             session['operator_id'] = operator['id']
+            scan_logger.log_successful_login(operator['handle'])
         else:
             scan_logger.log_failed_login(handle, password)
             flash('Invalid credentials.', 'error')

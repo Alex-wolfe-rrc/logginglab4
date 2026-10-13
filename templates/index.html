@@ -35,7 +35,7 @@
           <td class="systype">{{ f.system_type }}</td>
           <td class="handle"><a href="{{ url_for('profile', handle=f.submitted_by) }}">{{ f.submitted_by }}</a></td>
           <td>{{ f.scan_year }}</td>
-          <td class="notes">{{ f.notes | safe }}</td>
+          <td class="notes">{{ f.notes }}</td>
         </tr>
         {% endfor %}
       </tbody>

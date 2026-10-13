@@ -328,6 +328,9 @@ class ScanLogger:
     relevant event details.
     """
 
+    def _clean(self, value):
+        return str(value).replace("\r", "\\r").replace("\n", "\\n")
+
     def log_submission(self, handle, phone_number, notes):
         """
         Write a finding submission event to the log.
@@ -338,7 +341,12 @@ class ScanLogger:
             notes        -- the notes text submitted with the finding
         """
         with open(LOG_PATH, 'a') as log_file:
-            log_file.write(f"[{datetime.now()}] SUBMISSION | operator={handle} | phone={phone_number} | notes={notes}\n")
+            log_file.write(
+                f"[{datetime.now()}] SUBMISSION | "
+                f"operator={self._clean(handle)} | "
+                f"phone={self._clean(phone_number)} | "
+                f"notes={self._clean(notes)}\n"
+            )
 
     def log_failed_login(self, handle, password):
         """
@@ -349,7 +357,10 @@ class ScanLogger:
             password -- the password that was submitted
         """
         with open(LOG_PATH, 'a') as log_file:
-            log_file.write(f"[{datetime.now()}] LOGIN_FAIL | handle={handle}\n")
+            log_file.write(
+                f"[{datetime.now()}] LOGIN_FAIL | "
+                f"handle={self._clean(handle)}\n"
+            )
 
     def log_search(self, keyword):
         """
@@ -359,7 +370,10 @@ class ScanLogger:
             keyword -- the search keyword that was submitted
         """
         with open(LOG_PATH, 'a') as log_file:
-            log_file.write(f"[{datetime.now()}] SEARCH | keyword={keyword}\n")
+            log_file.write(
+                f"[{datetime.now()}] SEARCH | "
+                f"keyword={self._clean(keyword)}\n"
+            )
 
 
 # -- App setup ---------------------------------------------------------------

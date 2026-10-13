@@ -1,0 +1,16 @@
+[2026-10-13 12:05:29.653154] LOGIN_FAIL | handle=what | attempted_password=what
+[2026-10-13 12:42:38.161134] LOGIN_FAIL | handle=' OR '1'='1' -- | attempted_password=dad
+[2026-10-13 12:55:35.402547] SEARCH | keyword=zzzz
+[2026-10-13 12:56:31.795920] SEARCH | keyword=zzzz
+[2026-10-13 12:56:59.786167] SEARCH | keyword=yep
+[2026-10-13 13:06:52.699215] SEARCH | keyword=yep
+[2026-10-13 13:20:44.665056] SEARCH | keyword=yep
+[2026-10-13 13:22:13.764745] SUBMISSION | operator=capn_static | phone=999-9999 | notes=%' OR '1'='1' --
+[2026-10-13 13:48:18.467044] SUBMISSION | operator=capn_static | phone=123-4567 | notes=This is the note
+LOGIN_SUCCESS operator=admin
+[2026-10-13 13:49:42.749490] SUBMISSION | operator=capn_static | phone=123-4567 | notes=This is the note not the one below this
+[2026-10-13 13:48:18.467044] LOGIN_SUCCESS | operator=admin
+[2026-10-13 14:00:23.133198] SUBMISSION | operator=capn_static | phone=99999999 | notes=THE\r\n\r\nAnother line
+[2026-10-13 16:19:15.929245] LOGIN_FAIL | handle=waaa
+[2026-10-13 16:22:48.807777] LOGIN_SUCCESS | handle=capn_static
+[2026-10-13 16:32:57.143211] SUBMISSION | operator=capn_static | phone=111111 | notes=<img src=x onerror=alert('BAD')>

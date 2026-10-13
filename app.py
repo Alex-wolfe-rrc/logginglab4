@@ -178,7 +178,11 @@ class OperatorRepository(Repository):
             password -- the submitted plain text password string
         """
         query = "SELECT * FROM operators WHERE handle = ? AND password = ?"
-        return self._db.fetchone(query, (handle, password))
+        try:
+            return self._db.fetchone(query, (handle, password))
+        except Exception:
+            return None
+
 
     def find_by_id(self, record_id):
         """
@@ -261,9 +265,13 @@ class FindingRepository(Repository):
         results = None
         try:
             query = "SELECT * FROM findings WHERE notes LIKE ?"
+            params = ["%" + keyword + "%"]
+
             if system_type:
-                query = query + " AND system_type = '" + system_type + "'"
-            results = self._db.fetchall(query, ("%" + keyword + "%",))
+                query += " AND system_type = ?"
+                params.append(system_type)
+
+            results = self._db.fetchall(query, tuple(params))
         except Exception as e:
             error = str(e)
         return results, error
